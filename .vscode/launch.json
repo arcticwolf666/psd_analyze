@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(msvc) Launch",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/install/bin/psd_analyze.exe",
+      "args": ["processed.psd"],
+      //"args": ["empty.psd"],
+      //"args": ["csp.psd"],
+      //"args": ["folder.psd"],
+      //"args": ["group.psd"],
+      //"args": ["group2.psd"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "CMake: install",
+    }
+  ]
+}

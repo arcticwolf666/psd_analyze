@@ -1,0 +1,62 @@
+{
+  /*
+   * Notes:
+   * 2024/05/22 現在 cmake-tools と VSCode の問題で msbuild や cl の出力が文字化けする。
+   * ビルドステージをシェルから直接実行すれば文字化けがしないので、ビルドステージのみこの問題に対処してある。
+   * https://github.com/microsoft/vscode-cmake-tools/issues/3632
+   * クリーン・インストールステージでは相変わらず msbuild の出力が化ける事に注意。
+   * ctrl+shift+b でビルドしてから F5 を押下すれば化けていないビルドログが見れる。
+   */
+	"version": "2.0.0",
+  "options": {
+    "env": {
+      "PATH": "C:\\Library\\qt-6.7.1\\bin;${env:PATH}"
+    }
+  },
+  "tasks": [
+    {
+      "type": "cmake",
+      "label": "CMake: clean",
+      "command": "clean",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: build",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/build",
+        "--config",
+        "${command:cmake.buildType}",
+        "--parallel"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true,
+      },
+      "problemMatcher": [
+        "$msCompile"
+      ]
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: install",
+      "command": "install",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: full build",
+      "type": "shell",
+      "group": "build",
+      "command": "echo ビルド完了",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "CMake: clean",
+        "CMake: build"
+      ]
+    },
+  ]
+}

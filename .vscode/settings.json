@@ -1,0 +1,5 @@
+{
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.installPrefix": "${workspaceFolder}/build/install",
+  "cmake.configureArgs": ["-DQt6_DIR=C:\\Library\\qt-6.7.1\\lib\\cmake\\Qt6"],
+}
